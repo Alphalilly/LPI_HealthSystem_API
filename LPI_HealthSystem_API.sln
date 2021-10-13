@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LPI_HealthSystem_API", "LPI_HealthSystem_API\LPI_HealthSystem_API.csproj", "{78A81859-2908-43FC-92E3-71A9C0EBD92C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{78A81859-2908-43FC-92E3-71A9C0EBD92C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78A81859-2908-43FC-92E3-71A9C0EBD92C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78A81859-2908-43FC-92E3-71A9C0EBD92C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78A81859-2908-43FC-92E3-71A9C0EBD92C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {97E34371-06E9-4410-B997-F7C435B6E6FF}
+	EndGlobalSection
+EndGlobal
