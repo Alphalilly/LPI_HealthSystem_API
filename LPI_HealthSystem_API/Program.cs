@@ -6,7 +6,26 @@ using System.Threading.Tasks;
 
 namespace LPI_HealthSystem_API
 {
-    class Program
+	class Program
+	{
+		static void Main()
+		{
+			var Entity = new YourMom();
+
+			Entity.DefaultValues();
+
+			Entity.ShowHUD();
+
+			Entity.TakeDamage(120);
+
+			Entity.ShowHUD();
+
+
+			Console.ReadKey(true);
+		}
+	}
+
+    public class YourMom
     {
 		// Health system handles the player health, shield, lives, etc...
 		// Variables: Health, Shield, Lives, Spillover, etc...
@@ -18,166 +37,143 @@ namespace LPI_HealthSystem_API
 		//             > experience points + level-up system
 		//             > create your own variables, create your own methods.
 		//             > create sub-methods
+		//			   > instead of putting 0 everywhere. Have a defult min, max value.
 		//             > etc...
 
-		static int health; //make a system for health
-		static int shield; //make a system for shield
-		static int lives; //make a system for lives (""""API""""???)
+		int Health;
+		static int Shield;
+		static int Lives;
 
-		static int damage;
+		static int Damage;
 		
 
-		static void Main()
+		void test(int dmg)
         {
-			DefultValues();
+			Health = 0;
 
-			ShowHUD();
-
-			TakeDamage(-123333322);
-
-			ShowHUD();
-
-
-			Console.ReadKey(true);
-        }
-
-		static void test(int dmg)
-        {
-			if (dmg < 0)
+			if (Health <= 0)
 			{
-				//dmg = 0; // no u
-				//Console.WriteLine("error!");
-				return;
+				Health = 0;
+				DecLives(); // is this broken? T^T
 			}
-
 		}
 
-		static void DefultValues()
+		public void DefaultValues()
         {
-			health = 100;
-			shield = 100;
-			lives = 3;
-			damage = 0;
+			Health = 100;
+			Shield = 100;
+			Lives = 3;
+			Damage = 0;
         }
 
-		static void DecLives() //not work?
+		void DecLives() //not work?
 		{
-			if (lives == 0)
+			if (Lives == 0)
 			{
 				Console.WriteLine("Game Over"); //this does nothing
 			}
-			else if (lives < 0)
+			else if (Lives < 0)
 			{
-				lives = lives - 1;
+				Lives = Lives - 1;
 				Console.WriteLine("Revive");
-				health = 100;
-				shield = 100;
+				Health = 100;
+				Shield = 100;
 			}
 			
 		}
 
-		static int SpillOver(int dmg,int sp)
+		int SpillOver(int dmg)
         {
-			sp = dmg - shield;
-			health = health - sp;
+			var spill = dmg - Shield;
+			Health -= spill;
 
-			return sp;
+			return spill;
         }
 
-		static void TakeDamage(int dmg) // lol fix this
+		public void TakeDamage(int dmg) // lol fix this
         {
-			//yandere dev on the scene!
-
             if (dmg < 0)
             {
-				//dmg = 0; // no u
+				Console.WriteLine("Error! Damage must be positive");
+				return;
+			}
+
+			if (dmg > Shield)
+			{
+				SpillOver(dmg);
+				Shield = 0;
+			}
+			else if (Shield > 0) 
+            {
+				Shield = Shield - dmg;
+            }
+			else if (Health > 0)
+            {
+				Health = Health - dmg;
+			}
+
+		}
+
+		void Heal(int hp)
+        {
+			if (hp < 0)
+			{
+				//hp = 0; // no u
 				Console.WriteLine("error!");
 				return;
 			}
 
-            else if (shield > 0) //extra mile: instead of putting 0 here. Have a defult min, max value.
+			Health = Health + hp;
+
+			if (Health > 100)
             {
-				shield = shield - dmg;
+				Health = 100;
             }
-
-			else if (dmg > shield)
-            {
-				SpillOver(dmg, dmg);
-				shield = 0;
-            }
-
-			else if (health > 0)
-            {
-				health = health - dmg;
-			}
-
-			else if (health <= 0)
-            {
-				health = 0;
-				DecLives(); // is this broken? T^T
-            }
-            // or I could have just wrapped all of this ^^^^ in		if (dmg < 0)	but me small brain :D
-
 		}
 
-		static void Heal(int hp)
+		void RegenShield(int hp)
         {
 			if (hp < 0)
 			{
-				hp = 0; // no u
+				//hp = 0; // no u
 				Console.WriteLine("error!");
+				return;
 			}
 
-			health = health + hp;
+			Shield = Shield + hp;
 
-			if (health > 100)
+			if (Shield > 100)
             {
-				health = 100;
-            }
-		}
-
-		static void RegenShield(int hp)
-        {
-			if (hp < 0)
-			{
-				hp = 0; // no u
-				Console.WriteLine("error!");
-			}
-
-			shield = shield + hp;
-
-			if (shield > 100)
-            {
-				shield = 100;
+				Shield = 100;
             }
 		}
 
 
-		static void HealthStatus()
+		void HealthStatus()
 		{
-			if (health == 100)
+			if (Health == 100)
 			{
 				Console.WriteLine("+ Prefect Health");
 			}
-			else if (health >= 75)
+			else if (Health >= 75)
 			{
 				Console.WriteLine("+ Healthy");
 			}
-			else if (health >= 50)
+			else if (Health >= 50)
 			{
 				Console.WriteLine("+ Hurt");
 			}
-			else if (health >= 10)
+			else if (Health >= 10)
 			{
 				Console.WriteLine("+ Badly hurt");
 			}
-			else if (health > 0)
+			else if (Health > 0)
 			{
 				Console.WriteLine("+ Imminent Danger");
 			}
-			else if (health <= 0)
+			else if (Health <= 0)
 			{
-				health = 0;
+				Health = 0;
 				Console.WriteLine("+ Dead");
 			}
 			else
@@ -186,7 +182,7 @@ namespace LPI_HealthSystem_API
 			}
 		}
 
-		static void Boarder(float increment)
+		void Boarder(float increment)
 		{
 			if (increment == 1)
 			{
@@ -214,7 +210,7 @@ namespace LPI_HealthSystem_API
 			}
 		}
 
-		static void ShowHUD()
+		public void ShowHUD()
 		{
 			Console.ForegroundColor = ConsoleColor.DarkCyan;
 
@@ -229,9 +225,9 @@ namespace LPI_HealthSystem_API
 			Console.WriteLine("---------------------------------");
 
 			//add more stuff
-			Console.WriteLine("» Shield: " + shield);
-			Console.WriteLine("» Health: " + health);
-			Console.WriteLine("» Lives: " + lives);
+			Console.WriteLine("» Shield: " + Shield);
+			Console.WriteLine("» Health: " + Health);
+			Console.WriteLine("» Lives: " + Lives);
 
 			Console.WriteLine("---------------------------------");
 
