@@ -6,150 +6,79 @@ using System.Threading.Tasks;
 
 namespace LPI_HealthSystem_API
 {
+	// Health system handles the player health, shield, lives, etc...
+	// Variables: Health, Shield, Lives, Spillover, etc...
+	// Methods: ShowHUD(), TakeDamage(int damage), Heal(int hp), RegenerateShield(int hp), etc...
+	// Simulated gameplay that tests the code. Showcasing range and error checking.
+	// Take Damage Spill down
+	// extra mile:
+	//             > evolve it beyond a health system, into a player statistics system. 
+	//             > experience points + level-up system
+	//             > create your own variables, create your own methods.
+	//             > create sub-methods
+	//			   > instead of putting 0 everywhere. Have a defult min, max value.
+	//             > etc...
+
 	class Program
 	{
 		static void Main()
 		{
-			var Entity = new YourMom();
+			var Entity = new HealthSystem();
 
-			Entity.DefaultValues();
+			//Entity.test();
 
-			Entity.ShowHUD();
-
-			Entity.TakeDamage(120);
-
-			Entity.ShowHUD();
+			Entity.test();
 
 
 			Console.ReadKey(true);
 		}
 	}
 
-    public class YourMom
+
+    public class HealthSystem
     {
-		// Health system handles the player health, shield, lives, etc...
-		// Variables: Health, Shield, Lives, Spillover, etc...
-		// Methods: ShowHUD(), TakeDamage(int damage), Heal(int hp), RegenerateShield(int hp), etc...
-		// Simulated gameplay that tests the code. Showcasing range and error checking.
-		// Take Damage Spill down
-		// extra mile:
-		//             > evolve it beyond a health system, into a player statistics system. 
-		//             > experience points + level-up system
-		//             > create your own variables, create your own methods.
-		//             > create sub-methods
-		//			   > instead of putting 0 everywhere. Have a defult min, max value.
-		//             > etc...
-
 		int Health;
-		static int Shield;
-		static int Lives;
+		int Shield;
+		int Lives;
 
-		static int Damage;
-		
+		public int Damage;
 
-		void test(int dmg)
+		public void test()
         {
-			Health = 0;
+            DefaultValues();
 
-			if (Health <= 0)
-			{
-				Health = 0;
-				DecLives(); // is this broken? T^T
-			}
-		}
+            TakeDamage(-120);
 
-		public void DefaultValues()
-        {
-			Health = 100;
-			Shield = 100;
-			Lives = 3;
-			Damage = 0;
+            ShowHUD();
+
+            TakeDamage(10);
+
+            ShowHUD();
+
+            TakeDamage(100);
+
+            ShowHUD();
+
+            TakeDamage(50);
+
+            ShowHUD();
+
+            TakeDamage(400);
+
+            ShowHUD();
         }
 
-		void DecLives() //not work?
-		{
-			if (Lives == 0)
-			{
-				Console.WriteLine("Game Over"); //this does nothing
-			}
-			else if (Lives < 0)
-			{
-				Lives = Lives - 1;
-				Console.WriteLine("Revive");
-				Health = 100;
-				Shield = 100;
-			}
-			
-		}
-
-		int SpillOver(int dmg)
+		/* // old spillover
+        int SpillOver(int dmg)
         {
-			var spill = dmg - Shield;
-			Health -= spill;
+            int spill = dmg - Shield;
+            Health -= spill;
 
-			return spill;
+            return spill;
         }
+		*/
 
-		public void TakeDamage(int dmg) // lol fix this
-        {
-            if (dmg < 0)
-            {
-				Console.WriteLine("Error! Damage must be positive");
-				return;
-			}
-
-			if (dmg > Shield)
-			{
-				SpillOver(dmg);
-				Shield = 0;
-			}
-			else if (Shield > 0) 
-            {
-				Shield = Shield - dmg;
-            }
-			else if (Health > 0)
-            {
-				Health = Health - dmg;
-			}
-
-		}
-
-		void Heal(int hp)
-        {
-			if (hp < 0)
-			{
-				//hp = 0; // no u
-				Console.WriteLine("error!");
-				return;
-			}
-
-			Health = Health + hp;
-
-			if (Health > 100)
-            {
-				Health = 100;
-            }
-		}
-
-		void RegenShield(int hp)
-        {
-			if (hp < 0)
-			{
-				//hp = 0; // no u
-				Console.WriteLine("error!");
-				return;
-			}
-
-			Shield = Shield + hp;
-
-			if (Shield > 100)
-            {
-				Shield = 100;
-            }
-		}
-
-
-		void HealthStatus()
+        void HealthStatus()
 		{
 			if (Health == 100)
 			{
@@ -173,16 +102,15 @@ namespace LPI_HealthSystem_API
 			}
 			else if (Health <= 0)
 			{
-				Health = 0;
 				Console.WriteLine("+ Dead");
 			}
 			else
 			{
-
+				return;
 			}
 		}
 
-		void Boarder(float increment)
+		void Boarder(float increment) 
 		{
 			if (increment == 1)
 			{
@@ -206,19 +134,125 @@ namespace LPI_HealthSystem_API
 			}
 			else
 			{
+				return;
+			}
+		}
 
+
+		public void DefaultValues()
+		{
+			Health = 100;
+			Shield = 100;
+			Lives = 3;
+			Damage = 0;
+		}
+
+		public void DecLives()
+		{
+			if (Lives > 0)
+			{
+				Console.WriteLine("> Revive");
+				Health = 100;
+				Shield = 100;
+			}
+			else if (Lives == 0)
+			{
+				Console.WriteLine("> Game Over");
+				return;
+			}
+
+		}
+
+		public void TakeDamage(int dmg)
+		{
+			int spillOver;
+
+			if (dmg < 0)
+			{
+				Console.ForegroundColor = ConsoleColor.Red;
+				Console.WriteLine("<!> Error! Damage = " + dmg + ". Value Must be a positive.");
+				Console.ForegroundColor = ConsoleColor.White;
+
+				return;
+			}
+
+			if (Shield > 0)
+            {
+                if (dmg > Shield)
+                {
+                    Console.WriteLine("b" + dmg);
+                    spillOver = dmg - Shield;
+                    Health = Health - spillOver;
+                    Shield = 0;
+                }
+                else
+                {
+                    Console.WriteLine("a" + dmg);
+                    Shield -= dmg;
+                }
+            }
+            else
+            {
+				Console.WriteLine("c" + dmg);
+				Health -= dmg;
+			}
+
+            if (Health <= 0)
+            {
+				Health = 0;
+                Lives--;
+            }
+        }
+
+		public void Heal(int hp)
+		{
+			if (hp < 0)
+			{
+				Console.ForegroundColor = ConsoleColor.Red;
+				Console.WriteLine("<!> Error! Heal = " + hp + ". Value Must be a positive.");
+				Console.ForegroundColor = ConsoleColor.White;
+
+				return;
+			}
+
+			Health = Health + hp;
+
+			if (Health > 100)
+			{
+				Health = 100;
+			}
+		}
+
+		public void RegenShield(int hp)
+		{
+			if (hp < 0)
+			{
+				Console.ForegroundColor = ConsoleColor.Red;
+				Console.WriteLine("<!> Error! Regen = " + hp + ". Value Must be a positive");
+				Console.ForegroundColor = ConsoleColor.White;
+
+				return;
+			}
+
+			Shield = Shield + hp;
+
+			if (Shield > 100)
+			{
+				Shield = 100;
 			}
 		}
 
 		public void ShowHUD()
 		{
+			Console.WriteLine();
+
 			Console.ForegroundColor = ConsoleColor.DarkCyan;
 
 			Boarder(2.5f);
 
 			Console.ForegroundColor = ConsoleColor.Magenta;
 
-			Console.WriteLine($"§\tPlayer\t§");
+			Console.WriteLine("§ Player §");
 
 			Console.ForegroundColor = ConsoleColor.DarkCyan;
 
