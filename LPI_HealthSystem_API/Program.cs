@@ -9,15 +9,16 @@ namespace LPI_HealthSystem_API
 	// Health system handles the player health, shield, lives, etc...
 	// Variables: Health, Shield, Lives, Spillover, etc...
 	// Methods: ShowHUD(), TakeDamage(int damage), Heal(int hp), RegenerateShield(int hp), etc...
-	// Simulated gameplay that tests the code. Showcasing range and error checking.
 	// Take Damage Spill down
-	// extra mile:
-	//             > evolve it beyond a health system, into a player statistics system. 
-	//             > experience points + level-up system
-	//             > create your own variables, create your own methods.
-	//             > create sub-methods
-	//			   > instead of putting 0 everywhere. Have a defult min, max value.
-	//             > etc...
+	// Test that the code works as intended, Showcasing range and error checking. Simulated gameplay is optional.
+	// extra mile ideas:
+	//		> evolve it beyond a health system, into a player statistics system. 
+	//      > experience points + level-up system
+	//		> weapon system
+	//      > create your own variables, create your own methods.
+	//      > create sub-methods
+	//	    > instead of putting 0 everywhere. Have a defult min, max value.
+	//      > etc...
 
 	class Program
 	{
@@ -25,15 +26,9 @@ namespace LPI_HealthSystem_API
 		{
 			var Entity = new HealthSystem();
 
-			//Entity.test();
-
-			Entity.test();
-
-
 			Console.ReadKey(true);
 		}
 	}
-
 
     public class HealthSystem
     {
