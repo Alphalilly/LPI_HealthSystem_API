@@ -26,6 +26,8 @@ namespace LPI_HealthSystem_API
 		{
 			var Entity = new HealthSystem();
 
+			Entity.Dubug();
+
 			Console.ReadKey(true);
 		}
 	}
@@ -38,30 +40,150 @@ namespace LPI_HealthSystem_API
 
 		public int Damage;
 
-		public void test()
+		public void Dubug()
         {
-            DefaultValues();
+			DefaultValues();
 
-            TakeDamage(-120);
+			Console.ReadKey(true);
 
-            ShowHUD();
+			ShowHUD();
 
-            TakeDamage(10);
+			Console.ReadKey(true);
 
-            ShowHUD();
+			Damage = -10;
 
-            TakeDamage(100);
+			TakeDamage(Damage);
 
-            ShowHUD();
+			Console.ReadKey(true);
 
-            TakeDamage(50);
+			ShowHUD();
 
-            ShowHUD();
+			Console.ReadKey(true);
 
-            TakeDamage(400);
+			Damage = 10;
 
-            ShowHUD();
-        }
+			TakeDamage(Damage);
+
+			Console.ReadKey(true);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			Damage = 50;
+
+			TakeDamage(Damage);
+
+			Console.ReadKey(true);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			RegenShield(-20);
+
+			Console.ReadKey(true);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			RegenShield(100);
+
+			Console.ReadKey(true);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			Damage = 120;
+
+			TakeDamage(Damage);
+
+			Console.ReadKey(true);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			Heal(-30);
+
+			Console.ReadKey(true);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			Heal(30);
+
+			Console.ReadKey(true);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			Damage = 120;
+
+			TakeDamage(Damage);
+
+			Console.ReadKey(true);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			Revive();
+
+			Console.ReadKey(true);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			Damage = 200;
+
+			TakeDamage(Damage);
+
+			Console.ReadKey(true);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			Revive();
+
+			Console.ReadKey(true);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			TakeDamage(Damage);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			Revive();
+
+			Console.ReadKey(true);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			TakeDamage(Damage);
+
+			Console.ReadKey(true);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			Revive();
+
+			Console.ReadKey(true);
+		}
 
 		/* // old spillover
         int SpillOver(int dmg)
@@ -73,7 +195,7 @@ namespace LPI_HealthSystem_API
         }
 		*/
 
-        void HealthStatus()
+		void HealthStatus()
 		{
 			if (Health == 100)
 			{
@@ -109,23 +231,78 @@ namespace LPI_HealthSystem_API
 		{
 			if (increment == 1)
 			{
-				Console.WriteLine("»══════¤══════«");
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.Write("»");
+				Console.ForegroundColor = ConsoleColor.DarkCyan;
+				Console.Write("══════");
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.Write("¤");
+				Console.ForegroundColor = ConsoleColor.DarkCyan;
+				Console.Write("══════");
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.WriteLine("«");
+				Console.ForegroundColor = ConsoleColor.DarkCyan;
+
 			}
 			else if (increment == 1.5f)
 			{
-				Console.WriteLine("»═════════¤═════════«");
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.Write("»");
+				Console.ForegroundColor = ConsoleColor.DarkCyan;
+				Console.Write("═════════");
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.Write("¤");
+				Console.ForegroundColor = ConsoleColor.DarkCyan;
+				Console.Write("═════════");
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.WriteLine("«");
+				Console.ForegroundColor = ConsoleColor.DarkCyan;
+
 			}
 			else if (increment == 2)
 			{
-				Console.WriteLine("»════════════¤════════════«");
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.Write("»");
+				Console.ForegroundColor = ConsoleColor.DarkCyan;
+				Console.Write("════════════");
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.Write("¤");
+				Console.ForegroundColor = ConsoleColor.DarkCyan;
+				Console.Write("════════════");
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.WriteLine("«");
+				Console.ForegroundColor = ConsoleColor.DarkCyan;
 			}
 			else if (increment == 2.5f)
 			{
-				Console.WriteLine("»═══════════════¤═══════════════«");
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.Write("»");
+				Console.ForegroundColor = ConsoleColor.DarkCyan;
+				Console.Write("═══════════════");
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.Write("¤");
+				Console.ForegroundColor = ConsoleColor.DarkCyan;
+				Console.Write("═══════════════");
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.WriteLine("«");
+				Console.ForegroundColor = ConsoleColor.DarkCyan;
+
+
 			}
 			else if (increment == 3)
 			{
-				Console.WriteLine("»══════════════════¤══════════════════«");
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.Write("»");
+				Console.ForegroundColor = ConsoleColor.DarkCyan;
+				Console.Write("══════════════════");
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.Write("¤");
+				Console.ForegroundColor = ConsoleColor.DarkCyan;
+				Console.Write("══════════════════");
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.WriteLine("«");
+				Console.ForegroundColor = ConsoleColor.DarkCyan;
+
 			}
 			else
 			{
@@ -136,24 +313,29 @@ namespace LPI_HealthSystem_API
 
 		public void DefaultValues()
 		{
+
+			Console.WriteLine("<;> Defult Values set.");
+
 			Health = 100;
 			Shield = 100;
 			Lives = 3;
 			Damage = 0;
 		}
 
-		public void DecLives()
+		public void Revive()
 		{
+			if (Lives <= 0)
+			{
+				Lives = 0;
+				Console.WriteLine("> Game Over");
+				return;
+			}
 			if (Lives > 0)
 			{
+				Lives--;
 				Console.WriteLine("> Revive");
 				Health = 100;
 				Shield = 100;
-			}
-			else if (Lives == 0)
-			{
-				Console.WriteLine("> Game Over");
-				return;
 			}
 
 		}
@@ -165,7 +347,7 @@ namespace LPI_HealthSystem_API
 			if (dmg < 0)
 			{
 				Console.ForegroundColor = ConsoleColor.Red;
-				Console.WriteLine("<!> Error! Damage = " + dmg + ". Value Must be a positive.");
+				Console.WriteLine("<!> Error! Damage = " + dmg + ". Value Must be positive.");
 				Console.ForegroundColor = ConsoleColor.White;
 
 				return;
@@ -175,27 +357,28 @@ namespace LPI_HealthSystem_API
             {
                 if (dmg > Shield)
                 {
-                    Console.WriteLine("b" + dmg);
+                    Console.WriteLine("> Player is dealt " + dmg + " Damage!");
                     spillOver = dmg - Shield;
-                    Health = Health - spillOver;
+                    Health -= spillOver;
                     Shield = 0;
                 }
                 else
                 {
-                    Console.WriteLine("a" + dmg);
-                    Shield -= dmg;
+					Console.WriteLine("> Player is dealt " + dmg + " Damage!");
+
+					Shield -= dmg;
                 }
             }
             else
             {
-				Console.WriteLine("c" + dmg);
+				Console.WriteLine("> Player is dealt " + dmg + " Damage!");
+
 				Health -= dmg;
 			}
 
             if (Health <= 0)
             {
 				Health = 0;
-                Lives--;
             }
         }
 
@@ -204,11 +387,13 @@ namespace LPI_HealthSystem_API
 			if (hp < 0)
 			{
 				Console.ForegroundColor = ConsoleColor.Red;
-				Console.WriteLine("<!> Error! Heal = " + hp + ". Value Must be a positive.");
+				Console.WriteLine("<!> Error! Heal = " + hp + ". Value Must be positive.");
 				Console.ForegroundColor = ConsoleColor.White;
 
 				return;
 			}
+
+			Console.WriteLine("> Player Heals" + hp + " Health!");
 
 			Health = Health + hp;
 
@@ -223,11 +408,13 @@ namespace LPI_HealthSystem_API
 			if (hp < 0)
 			{
 				Console.ForegroundColor = ConsoleColor.Red;
-				Console.WriteLine("<!> Error! Regen = " + hp + ". Value Must be a positive");
+				Console.WriteLine("<!> Error! Regen = " + hp + ". Value Must be positive");
 				Console.ForegroundColor = ConsoleColor.White;
 
 				return;
 			}
+
+			Console.WriteLine("> Player Regenerates " + hp + " Sheild!");
 
 			Shield = Shield + hp;
 
@@ -247,16 +434,19 @@ namespace LPI_HealthSystem_API
 
 			Console.ForegroundColor = ConsoleColor.Magenta;
 
-			Console.WriteLine("§ Player §");
+			Console.WriteLine("\t   § Player §");
 
 			Console.ForegroundColor = ConsoleColor.DarkCyan;
 
 			Console.WriteLine("---------------------------------");
 
-			//add more stuff
+			Console.ForegroundColor = ConsoleColor.Yellow;
+
 			Console.WriteLine("» Shield: " + Shield);
 			Console.WriteLine("» Health: " + Health);
 			Console.WriteLine("» Lives: " + Lives);
+
+			Console.ForegroundColor = ConsoleColor.DarkCyan;
 
 			Console.WriteLine("---------------------------------");
 
