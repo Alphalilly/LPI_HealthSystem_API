@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace LPI_HealthSystem_API
 {
@@ -10,6 +11,7 @@ namespace LPI_HealthSystem_API
 	// Variables: Health, Shield, Lives, Spillover, etc...
 	// Methods: ShowHUD(), TakeDamage(int damage), Heal(int hp), RegenerateShield(int hp), etc...
 	// Take Damage Spill down
+	// Unit Testing
 	// Test that the code works as intended, Showcasing range and error checking. Simulated gameplay is optional.
 	// extra mile ideas:
 	//		> evolve it beyond a health system, into a player statistics system. 
@@ -41,24 +43,33 @@ namespace LPI_HealthSystem_API
 		public int Damage;
 
 		public void Dubug()
-        {
+		{
+			Console.WriteLine("<?> Debug Mode <?>");
+			Console.WriteLine();
+
+			// Assigning Defualt Values to the Variables
 			DefaultValues();
 
-			Console.ReadKey(true);
+            Console.WriteLine("<?> Testing DefaultValues() ... ");
 
-			ShowHUD();
+            Debug.Assert(Health == 100);
+			Debug.Assert(Shield == 100);
+			Debug.Assert(Lives == 3);
+			Debug.Assert(Damage == 0);
 
-			Console.ReadKey(true);
+			Console.WriteLine("<?> Test Successful!");
+			Console.WriteLine();
+
+
+			Console.WriteLine("<?> Testing TakeDamage(-10) Error Checking on Shield ... ");
 
 			Damage = -10;
 
 			TakeDamage(Damage);
 
-			Console.ReadKey(true);
 
-			ShowHUD();
 
-			Console.ReadKey(true);
+
 
 			Damage = 10;
 
@@ -184,16 +195,6 @@ namespace LPI_HealthSystem_API
 
 			Console.ReadKey(true);
 		}
-
-		/* // old spillover
-        int SpillOver(int dmg)
-        {
-            int spill = dmg - Shield;
-            Health -= spill;
-
-            return spill;
-        }
-		*/
 
 		void HealthStatus()
 		{
@@ -465,3 +466,160 @@ namespace LPI_HealthSystem_API
 
 	}
 }
+
+/* Old Debug
+		public void Dubug()
+        {
+			DefaultValues();
+
+			Console.ReadKey(true);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			Damage = -10;
+
+			TakeDamage(Damage);
+
+			Console.ReadKey(true);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			Damage = 10;
+
+			TakeDamage(Damage);
+
+			Console.ReadKey(true);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			Damage = 50;
+
+			TakeDamage(Damage);
+
+			Console.ReadKey(true);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			RegenShield(-20);
+
+			Console.ReadKey(true);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			RegenShield(100);
+
+			Console.ReadKey(true);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			Damage = 120;
+
+			TakeDamage(Damage);
+
+			Console.ReadKey(true);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			Heal(-30);
+
+			Console.ReadKey(true);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			Heal(30);
+
+			Console.ReadKey(true);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			Damage = 120;
+
+			TakeDamage(Damage);
+
+			Console.ReadKey(true);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			Revive();
+
+			Console.ReadKey(true);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			Damage = 200;
+
+			TakeDamage(Damage);
+
+			Console.ReadKey(true);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			Revive();
+
+			Console.ReadKey(true);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			TakeDamage(Damage);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			Revive();
+
+			Console.ReadKey(true);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			TakeDamage(Damage);
+
+			Console.ReadKey(true);
+
+			ShowHUD();
+
+			Console.ReadKey(true);
+
+			Revive();
+
+			Console.ReadKey(true);
+		}
+		*/
+
+/* // old spillover
+int SpillOver(int dmg)
+{
+	int spill = dmg - Shield;
+	Health -= spill;
+
+	return spill;
+}
+*/
