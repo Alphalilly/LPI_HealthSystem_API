@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Diagnostics;
+using System.Diagnostics; 
+
 
 namespace LPI_HealthSystem_API
 {
@@ -45,53 +46,43 @@ namespace LPI_HealthSystem_API
 		public void Dubug()
 		{
 			Console.WriteLine("<?> Debug Mode <?>");
-			Console.WriteLine();
+			Console.WriteLine(" ");
 
 			// Assigning Defualt Values to the Variables
 			DefaultValues();
-
-            Console.WriteLine("<?> Testing DefaultValues() ... ");
-
-            Debug.Assert(Health == 100);
+			Console.WriteLine("<?> Testing DefaultValues() ... ");
+            Debug.Assert(Health == 100, "You can put strings in here", "they dont do anything.");
 			Debug.Assert(Shield == 100);
 			Debug.Assert(Lives == 3);
 			Debug.Assert(Damage == 0);
-
 			Console.WriteLine("<?> Test Successful!");
 			Console.WriteLine();
 
-
-			Console.WriteLine("<?> Testing TakeDamage(-10) Error Checking on Shield ... ");
-
+			Console.WriteLine("<?> Testing TakeDamage() Clamping ... ");
 			Damage = -10;
-
 			TakeDamage(Damage);
+			Debug.Assert(Health == 100);
+			Debug.Assert(Shield == 100);
+			Debug.Assert(Lives == 3);
+			Console.WriteLine("<?> Test Successful!");
+			Console.WriteLine();
 
-
-
-
-
-			Damage = 10;
-
+			Console.WriteLine("<?> Testing TakeDamage() Shield ...");
+			Damage = 60;
 			TakeDamage(Damage);
+			Debug.Assert(Shield < 100);
+			Debug.Assert(Health <= 100);
+			Debug.Assert(Lives == 3);
+			Console.WriteLine("<?> Test Successful!");
+			Console.WriteLine();
 
-			Console.ReadKey(true);
-
-			ShowHUD();
-
-			Console.ReadKey(true);
-
-			Damage = 50;
-
-			TakeDamage(Damage);
-
-			Console.ReadKey(true);
-
-			ShowHUD();
-
-			Console.ReadKey(true);
-
+			Console.WriteLine("<?> Testing TakeDamage() Shield ...");
 			RegenShield(-20);
+			Debug.Assert(Shield < 100);
+			Debug.Assert(Health <= 100);
+			Debug.Assert(Lives == 3);
+			Console.WriteLine("<?> Test Successful!");
+			Console.WriteLine();
 
 			Console.ReadKey(true);
 
