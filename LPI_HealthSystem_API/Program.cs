@@ -32,6 +32,12 @@ namespace LPI_HealthSystem_API
 			Entity.Dubug();
 
 			Console.ReadKey(true);
+
+			Console.Clear();
+			Console.WriteLine("<;> Console Cleared!");
+
+			Console.ReadKey(true);
+
 		}
 	}
 
@@ -90,7 +96,7 @@ namespace LPI_HealthSystem_API
 			// Tests that the TakeDamage() handles negative values correctly
 
 			Console.ForegroundColor = ConsoleColor.Green;
-			Console.WriteLine("<?> Testing TakeDamage() Clamping ... "); // clamping is probably not the right word.
+			Console.WriteLine("<?> Testing TakeDamage() Error Checking ... ");
 			Console.ForegroundColor = ConsoleColor.White;
 
 			Damage = -10; 
@@ -128,7 +134,7 @@ namespace LPI_HealthSystem_API
 			// Tests that the RegenShield() handles negative values correctly
 
 			Console.ForegroundColor = ConsoleColor.Green;
-			Console.WriteLine("<?> Testing RegenShield() Clamping ..."); // clamping is probably not the right word
+			Console.WriteLine("<?> Testing RegenShield() Error Checking ...");
 			Console.ForegroundColor = ConsoleColor.White;
 
 			RegenShield(-20);
@@ -181,7 +187,7 @@ namespace LPI_HealthSystem_API
 			// Tests that the Heal() handles negative values correctly
 
 			Console.ForegroundColor = ConsoleColor.Green;
-			Console.WriteLine("<?> Testing Heal() Clamping ..."); // clamping is probably not the right word
+			Console.WriteLine("<?> Testing Heal() Error Checking ...");
 			Console.ForegroundColor = ConsoleColor.White;
 
 			Heal(-30);
